@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>業界別テスト傾向｜Webテスト見分け方ガイド｜就活の木</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f4ef;--bg2:#ffffff;--bg3:#f0ece4;--border:#d8d0c4;--text:#1a1209;--text2:#3d3028;--text3:#5a4e42;--green:#3a7d44;--green2:#2d6235;--green-l:#e8f5ea;--amber:#b45309;--amber-l:#fef3c7;--red:#b91c1c;--red-l:#fee2e2;--blue:#1e40af;--blue-l:#dbeafe;--purple:#6d28d9;--purple-l:#ede9fe;--teal:#0f766e;--teal-l:#ccfbf1;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+header{background:var(--green);color:#fff;padding:0 24px;height:56px;display:flex;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.15);}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-icon{font-size:22px;}.logo-text{font-size:17px;font-weight:700;}.logo-sub{font-size:10px;opacity:.8;margin-top:-2px;}
+nav{background:var(--bg2);border-bottom:2px solid var(--green);padding:0 24px;display:flex;overflow-x:auto;}
+nav a{display:flex;align-items:center;gap:6px;padding:14px 20px;font-size:13px;font-weight:700;color:var(--text2);text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s;}
+nav a:hover{color:var(--green);background:var(--green-l);}
+nav a.active{color:var(--green);border-bottom-color:var(--green);background:var(--green-l);}
+main{max-width:860px;margin:0 auto;padding:32px 20px 60px;}
+.page-header{background:linear-gradient(135deg,#0f766e,#065f46);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:28px;}
+.page-header .tag{display:inline-block;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:3px 14px;font-size:11px;font-weight:700;margin-bottom:10px;}
+.page-header h1{font-size:22px;font-weight:900;margin-bottom:6px;}
+.page-header p{font-size:13px;opacity:.9;line-height:1.7;}
+.caution{background:var(--amber-l);border:1px solid #fcd34d;border-left:4px solid var(--amber);border-radius:10px;padding:14px 18px;font-size:13px;line-height:1.8;margin-bottom:24px;color:var(--text2);}
+.caution strong{color:var(--amber);}
+.section-title{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:900;color:var(--green2);margin:28px 0 16px;padding-bottom:10px;border-bottom:2px solid var(--green-l);}
+.industry-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;}
+@media(max-width:600px){.industry-grid{grid-template-columns:1fr;}}
+.ind-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.ind-header{padding:14px 16px;display:flex;align-items:center;gap:10px;}
+.ind-icon{font-size:22px;}.ind-name{font-size:15px;font-weight:900;}
+.ind-body{padding:0 16px 16px;}
+.test-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.pill{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;}
+.pill-main{background:var(--red-l);color:var(--red);border:1px solid #fca5a5;}
+.pill-sub{background:var(--blue-l);color:var(--blue);}
+.pill-rare{background:var(--bg3);color:var(--text3);}
+.ind-note{font-size:12px;color:var(--text3);line-height:1.7;border-top:1px solid var(--border);padding-top:10px;margin-top:6px;}
+.summary-table{width:100%;border-collapse:collapse;margin-bottom:28px;font-size:13px;}
+.summary-table th{background:var(--green);color:#fff;padding:10px 14px;text-align:left;font-weight:700;}
+.summary-table td{padding:10px 14px;border-bottom:1px solid var(--border);background:var(--bg2);vertical-align:middle;}
+.summary-table tbody tr:hover{background:var(--green-l);}
+.rank1{font-weight:900;color:var(--red);}
+.rank2{font-weight:700;color:var(--amber);}
+.tip-box{background:var(--green-l);border:1px solid var(--green);border-radius:10px;padding:16px 20px;margin-bottom:24px;font-size:13px;line-height:1.8;color:var(--text2);}
+.tip-box strong{color:var(--green2);}
+.page-nav{display:flex;justify-content:space-between;margin-top:40px;}
+.btn-prev{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);color:var(--text2);text-decoration:none;padding:12px 20px;border-radius:8px;font-size:13px;font-weight:700;border:2px solid var(--border);transition:all .2s;}
+.btn-prev:hover{border-color:var(--green);color:var(--green);}
+.btn-next{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;text-decoration:none;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:700;transition:background .2s,transform .1s;box-shadow:0 2px 6px rgba(58,125,68,.3);}
+.btn-next:hover{background:var(--green2);transform:translateX(2px);}
+footer{background:var(--green2);color:rgba(255,255,255,.8);text-align:center;padding:20px;font-size:12px;margin-top:60px;}
+footer strong{color:#fff;}
+</style>
+</head>
+<body>
+<header><div class="logo"><span class="logo-icon">🌱</span><div><div class="logo-text">就活の木</div><div class="logo-sub">Webテスト見分け方ガイド</div></div></div></header>
+<nav>
+  <a href="webtest-guide.html">🔍 URL見分け方</a>
+  <a href="features.html">📊 各テストの特徴</a>
+  <a href="industry.html" class="active">🏢 業界別傾向</a>
+  <a href="checklist.html">✅ 受検前チェック</a>
+</nav>
+<main>
+  <div class="page-header">
+    <div class="tag">STEP 3 ／ 志望業界を確認</div>
+    <h1>🏢 業界別・出やすいWebテスト傾向</h1>
+    <p>志望業界が決まったら、その業界でよく使われるテストを重点対策しよう。<br>URLが不明な場合でも、業界から当たりをつけることができます。</p>
+  </div>
+
+  <div class="caution">⚠️ <strong>注意：あくまでも「傾向」です</strong><br>同じ業界でも企業によって使うテストは異なります。URLや案内メールで個別に確認することが最も確実です。業界傾向は「URLが不明な時の参考」として活用しましょう。</div>
+
+  <div class="section-title"><span>🏦</span>業界別・テスト傾向マップ</div>
+
+  <div class="industry-grid">
+    <div class="ind-card">
+      <div class="ind-header" style="background:var(--amber-l);">
+        <span class="ind-icon">🏦</span><span class="ind-name" style="color:var(--amber);">金融・銀行・証券</span>
+      </div>
+      <div class="ind-body">
+        <div style="font-size:11px;color:var(--text3);margin:10px 0 6px;font-weight:700;">よく使われるテスト</div>
+        <div class="test-pills"><span class="pill pill-main">玉手箱（最多）</span><span class="pill pill-sub">GAB</span><span class="pill pill-sub">SPI3</span></div>
+        <div class="ind-note">スピード処理能力が重視される。玉手箱の計数（9分52問）対策は必須。電卓の活用練習も忘れずに。</div>
+      </div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-header" style="background:#fdf2f8;">
+        <span class="ind-icon">💼</span><span class="ind-name" style="color:#9d174d;">総合商社</span>
+      </div>
+      <div class="ind-body">
+        <div style="font-size:11px;color:var(--text3);margin:10px 0 6px;font-weight:700;">よく使われるテスト</div>
+        <div class="test-pills"><span class="pill pill-main">玉手箱（最多）</span><span class="pill pill-sub">SPI3（構造把握含む）</span><span class="pill pill-sub">GAB</span></div>
+        <div class="ind-note">難関企業はSPIの「構造的把握力検査」が追加される場合あり。英語力も問われることが多い。</div>
+      </div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-header" style="background:var(--purple-l);">
+        <span class="ind-icon">🔬</span><span class="ind-name" style="color:var(--purple);">コンサル・外資系</span>
+      </div>
+      <div class="ind-body">
+        <div style="font-size:11px;color:var(--text3);margin:10px 0 6px;font-weight:700;">よく使われるテスト</div>
+        <div class="test-pills"><span class="pill pill-main">TG-WEB（最多）</span><span class="pill pill-sub">玉手箱</span><span class="pill pill-sub">GAB</span></div>
+        <div class="ind-note">最難関レベル。論理的思考力を厳しく問われる。TG-WEBの「解法パターン習得」が最優先。</div>
+      </div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-header" style="background:var(--teal-l);">
+        <span class="ind-icon">💻</span><span class="ind-name" style="color:var(--teal);">IT・システム開発</span>
+      </div>
+      <div class="ind-body">
+        <div style="font-size:11px;color:var(--text3);margin:10px 0 6px;font-weight:700;">よく使われるテスト</div>
+        <div class="test-pills"><span class="pill pill-main">CAB（SE職）</span><span class="pill pill-sub">SPI3</span><span class="pill pill-sub">TG-WEB</span></div>
+        <div class="ind-note">SE・プログラマー職はCABの「暗号解読」が独特。事前に必ず問題形式を確認しておくこと。</div>
+      </div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-header" style="background:var(--blue-l);">
+        <span class="ind-icon">🏭</span><span class="ind-name" style="color:var(--blue);">大手メーカー</span>
+      </div>
+      <div class="ind-body">
+        <div style="font-size:11px;color:var(--text3);margin:10px 0 6px;font-weight:700;">よく使われるテスト</div>
+        <div class="test-pills"><span class="pill pill-main">SPI3（最多）</span><span class="pill pill-sub">TG-WEB</span><span class="pill pill-sub">SCOA</span></div>
+        <div class="ind-note">SPI3が圧倒的多数。一部企業はSCOAを採用。非言語の計算問題を繰り返し練習しておこう。</div>
+      </div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-header" style="background:var(--red-l);">
+        <span class="ind-icon">🛍️</span><span class="ind-name" style="color:var(--red);">流通・小売・食品</span>
+      </div>
+      <div class="ind-body">
+        <div style="font-size:11px;color:var(--text3);margin:10px 0 6px;font-weight:700;">よく使われるテスト</div>
+        <div class="test-pills"><span class="pill pill-main">SPI3（最多）</span><span class="pill pill-sub">TG-WEB</span><span class="pill pill-sub">CUBIC</span></div>
+        <div class="ind-note">SPI3が主流。中堅・地方チェーンではCUBICなどマイナーなテストも見られる。</div>
+      </div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-header" style="background:#ecfdf5;">
+        <span class="ind-icon">🏥</span><span class="ind-name" style="color:#065f46;">医療・福祉・公共</span>
+      </div>
+      <div class="ind-body">
+        <div style="font-size:11px;color:var(--text3);margin:10px 0 6px;font-weight:700;">よく使われるテスト</div>
+        <div class="test-pills"><span class="pill pill-main">SPI3</span><span class="pill pill-sub">SCOA</span><span class="pill pill-rare">一般常識試験</span></div>
+        <div class="ind-note">SCOAの「一般常識」分野が強みになる場合あり。時事問題・社会常識も日頃から意識しておこう。</div>
+      </div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-header" style="background:#fff7ed;">
+        <span class="ind-icon">🚀</span><span class="ind-name" style="color:#c2410c;">ベンチャー・スタートアップ</span>
+      </div>
+      <div class="ind-body">
+        <div style="font-size:11px;color:var(--text3);margin:10px 0 6px;font-weight:700;">よく使われるテスト</div>
+        <div class="test-pills"><span class="pill pill-main">SPI3</span><span class="pill pill-sub">CUBIC</span><span class="pill pill-rare">独自テスト</span></div>
+        <div class="ind-note">費用が安価なCUBICや独自筆記を採用する企業も多い。SPIをベースに幅広く対策しておくと安心。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title"><span>📊</span>ひと目でわかる！テスト×業界マトリクス</div>
+  <table class="summary-table">
+    <thead><tr><th>業界</th><th>🔵 SPI3</th><th>🟡 玉手箱</th><th>🟣 TG-WEB</th><th>🟢 CAB/GAB</th><th>🩷 CUBIC</th><th>🌿 SCOA</th></tr></thead>
+    <tbody>
+      <tr><td>金融・証券</td><td>◯</td><td class="rank1">◎最多</td><td>△</td><td>◯</td><td>—</td><td>—</td></tr>
+      <tr><td>総合商社</td><td class="rank2">◯</td><td class="rank1">◎最多</td><td>△</td><td>◯</td><td>—</td><td>—</td></tr>
+      <tr><td>コンサル・外資</td><td>△</td><td>◯</td><td class="rank1">◎最多</td><td>◯</td><td>—</td><td>—</td></tr>
+      <tr><td>IT・システム</td><td class="rank2">◯</td><td>—</td><td>◯</td><td class="rank1">◎（SE職）</td><td>—</td><td>—</td></tr>
+      <tr><td>大手メーカー</td><td class="rank1">◎最多</td><td>△</td><td>◯</td><td>—</td><td>—</td><td>△</td></tr>
+      <tr><td>流通・食品</td><td class="rank1">◎最多</td><td>—</td><td>◯</td><td>—</td><td>△</td><td>—</td></tr>
+      <tr><td>公共・福祉</td><td class="rank1">◎</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rank2">◯</td></tr>
+      <tr><td>ベンチャー</td><td class="rank1">◎</td><td>—</td><td>—</td><td>—</td><td class="rank2">◯</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tip-box">🌱 <strong>キャリ爺からのひとこと</strong><br>業界傾向はあくまでも「参考」。まずは<strong>SPI3を基礎として固め</strong>、志望業界に合わせて玉手箱・TG-WEBを追加対策するのが王道です。どのテストも「問題形式に慣れること」が合格への近道——焦らず、木を育てるように丁寧に取り組もう。</div>
+
+  <div class="page-nav">
+    <a href="features.html" class="btn-prev">← 各テストの特徴に戻る</a>
+    <a href="checklist.html" class="btn-next">受検前チェックリストへ →</a>
+  </div>
+</main>
+<footer><strong>就活の木</strong>｜Webテスト対策ガイド<br>君は、一人じゃない。いつでも、目の前のキャリア支援課の扉は開いているよ。——キャリ爺</footer>
+</body>
+</html>

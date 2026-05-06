@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>各テストの特徴｜Webテスト見分け方ガイド｜就活の木</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#f7f4ef; --bg2:#ffffff; --bg3:#f0ece4; --border:#d8d0c4;
+  --text:#1a1209; --text2:#3d3028; --text3:#5a4e42;
+  --green:#3a7d44; --green2:#2d6235; --green-l:#e8f5ea;
+  --amber:#b45309; --amber-l:#fef3c7;
+  --red:#b91c1c; --red-l:#fee2e2;
+  --blue:#1e40af; --blue-l:#dbeafe;
+  --purple:#6d28d9; --purple-l:#ede9fe;
+  --teal:#0f766e; --teal-l:#ccfbf1;
+  --rose:#be185d; --rose-l:#fce7f3;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+header{background:var(--green);color:#fff;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.15);}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-icon{font-size:22px;}
+.logo-text{font-size:17px;font-weight:700;}
+.logo-sub{font-size:10px;opacity:.8;margin-top:-2px;}
+
+nav{background:var(--bg2);border-bottom:2px solid var(--green);padding:0 24px;display:flex;gap:0;overflow-x:auto;}
+nav a{display:flex;align-items:center;gap:6px;padding:14px 20px;font-size:13px;font-weight:700;color:var(--text2);text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s;}
+nav a:hover{color:var(--green);background:var(--green-l);}
+nav a.active{color:var(--green);border-bottom-color:var(--green);background:var(--green-l);}
+
+main{max-width:860px;margin:0 auto;padding:32px 20px 60px;}
+
+.page-header{background:linear-gradient(135deg,#1e40af,#3730a3);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:28px;}
+.page-header .tag{display:inline-block;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:3px 14px;font-size:11px;font-weight:700;margin-bottom:10px;}
+.page-header h1{font-size:22px;font-weight:900;margin-bottom:6px;}
+.page-header p{font-size:13px;opacity:.9;line-height:1.7;}
+
+/* テストカード */
+.test-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;margin-bottom:24px;overflow:hidden;transition:box-shadow .2s;}
+.test-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);}
+
+.card-header{padding:18px 22px;display:flex;align-items:center;gap:14px;}
+.card-icon{font-size:28px;}
+.card-title{flex:1;}
+.card-name{font-size:18px;font-weight:900;margin-bottom:2px;}
+.card-maker{font-size:11px;color:var(--text3);}
+
+.stars{display:flex;gap:2px;margin-left:auto;}
+.star{font-size:14px;}
+.star.filled{color:#f59e0b;}
+.star.empty{color:#d1d5db;}
+
+.card-body{padding:0 22px 20px;}
+
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.card-info{background:var(--bg3);border-radius:8px;padding:10px 14px;}
+.info-label{font-size:10px;font-weight:700;color:var(--text3);margin-bottom:4px;letter-spacing:.5px;}
+.info-val{font-size:13px;font-weight:700;color:var(--text2);}
+
+.subjects{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.subject-tag{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;}
+
+.feature-list{list-style:none;font-size:13px;line-height:2;color:var(--text2);}
+.feature-list li::before{content:'▸ ';color:var(--green);font-weight:700;}
+
+.drill-link{
+  display:flex;align-items:center;gap:10px;
+  background:var(--green-l);border:2px solid var(--green);
+  border-radius:10px;padding:12px 18px;
+  text-decoration:none;color:var(--green2);
+  font-size:13px;font-weight:700;
+  transition:all .2s;margin-top:14px;
+}
+.drill-link:hover{background:var(--green);color:#fff;}
+.drill-link .arrow{margin-left:auto;font-size:16px;}
+
+/* 色テーマ per card */
+.spi .card-header{background:var(--blue-l);border-bottom:3px solid var(--blue);}
+.spi .card-name{color:var(--blue);}
+.tama .card-header{background:var(--amber-l);border-bottom:3px solid var(--amber);}
+.tama .card-name{color:var(--amber);}
+.tg .card-header{background:var(--purple-l);border-bottom:3px solid var(--purple);}
+.tg .card-name{color:var(--purple);}
+.cab .card-header{background:var(--teal-l);border-bottom:3px solid var(--teal);}
+.cab .card-name{color:var(--teal);}
+.cubic .card-header{background:var(--rose-l);border-bottom:3px solid var(--rose);}
+.cubic .card-name{color:var(--rose);}
+.scoa .card-header{background:var(--green-l);border-bottom:3px solid var(--green);}
+.scoa .card-name{color:var(--green2);}
+
+.page-nav{display:flex;justify-content:space-between;margin-top:40px;}
+.btn-prev{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);color:var(--text2);text-decoration:none;padding:12px 20px;border-radius:8px;font-size:13px;font-weight:700;border:2px solid var(--border);transition:all .2s;}
+.btn-prev:hover{border-color:var(--green);color:var(--green);}
+.btn-next{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;text-decoration:none;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:700;transition:background .2s,transform .1s;box-shadow:0 2px 6px rgba(58,125,68,.3);}
+.btn-next:hover{background:var(--green2);transform:translateX(2px);}
+
+footer{background:var(--green2);color:rgba(255,255,255,.8);text-align:center;padding:20px;font-size:12px;margin-top:60px;}
+footer strong{color:#fff;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <span class="logo-icon">🌱</span>
+    <div>
+      <div class="logo-text">就活の木</div>
+      <div class="logo-sub">Webテスト見分け方ガイド</div>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <a href="webtest-guide.html">🔍 URL見分け方</a>
+  <a href="features.html" class="active">📊 各テストの特徴</a>
+  <a href="industry.html">🏢 業界別傾向</a>
+  <a href="checklist.html">✅ 受検前チェック</a>
+</nav>
+
+<main>
+
+  <div class="page-header">
+    <div class="tag">STEP 2 ／ テストを知る</div>
+    <h1>📊 6種類のWebテスト 特徴・難易度・対策</h1>
+    <p>テストの種類が判明したら、その特徴を把握して効率的に対策しよう。<br>各カードの「対策ドリルへ」ボタンから即練習スタートできます！</p>
+  </div>
+
+  <!-- SPI3 -->
+  <div class="test-card spi">
+    <div class="card-header">
+      <span class="card-icon">🔵</span>
+      <div class="card-title">
+        <div class="card-name">SPI3（リクナビ適性検査）</div>
+        <div class="card-maker">提供：リクルートマネジメントソリューションズ</div>
+      </div>
+      <div class="stars">
+        <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star empty">★</span><span class="star empty">★</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-grid">
+        <div class="card-info"><div class="info-label">導入企業数</div><div class="info-val">年間15,500社以上（最多）</div></div>
+        <div class="card-info"><div class="info-label">受検時間</div><div class="info-val">能力35分＋性格30分</div></div>
+        <div class="card-info"><div class="info-label">問題形式</div><div class="info-val">選択式・入力式</div></div>
+        <div class="card-info"><div class="info-label">電卓使用</div><div class="info-val">❌ 不可</div></div>
+      </div>
+      <div class="subjects">
+        <span class="subject-tag" style="background:var(--blue-l);color:var(--blue);">言語（国語）</span>
+        <span class="subject-tag" style="background:var(--blue-l);color:var(--blue);">非言語（数学）</span>
+        <span class="subject-tag" style="background:var(--blue-l);color:var(--blue);">性格検査</span>
+        <span class="subject-tag" style="background:#f1f5f9;color:var(--text3);">英語（オプション）</span>
+      </div>
+      <ul class="feature-list">
+        <li>日本で最も多くの企業が導入。必ず対策必須</li>
+        <li>非言語は入力形式が多く、計算力と処理速度が重要</li>
+        <li>テストセンター方式では結果の「使い回し」が可能</li>
+        <li>総合商社など難関企業は「構造的把握力」も出題</li>
+      </ul>
+      <a href="https://tanukin0423.github.io/shukatsu-6-test/" target="_blank" class="drill-link">
+        📝 SPI3対策ドリルで練習する（就活の木）<span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- 玉手箱 -->
+  <div class="test-card tama">
+    <div class="card-header">
+      <span class="card-icon">🟡</span>
+      <div class="card-title">
+        <div class="card-name">玉手箱（Ⅲ）</div>
+        <div class="card-maker">提供：日本エス・エイチ・エル（SHL）社</div>
+      </div>
+      <div class="stars">
+        <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star empty">★</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-grid">
+        <div class="card-info"><div class="info-label">特徴</div><div class="info-val">圧倒的なスピード勝負</div></div>
+        <div class="card-info"><div class="info-label">問題数/時間</div><div class="info-val">計数52問／9分など</div></div>
+        <div class="card-info"><div class="info-label">問題形式</div><div class="info-val">選択式（全問）</div></div>
+        <div class="card-info"><div class="info-label">電卓使用</div><div class="info-val">✅ 可（推奨）</div></div>
+      </div>
+      <div class="subjects">
+        <span class="subject-tag" style="background:var(--amber-l);color:var(--amber);">言語</span>
+        <span class="subject-tag" style="background:var(--amber-l);color:var(--amber);">計数</span>
+        <span class="subject-tag" style="background:var(--amber-l);color:var(--amber);">英語</span>
+        <span class="subject-tag" style="background:var(--amber-l);color:var(--amber);">性格検査</span>
+      </div>
+      <ul class="feature-list">
+        <li>金融・商社・コンサルで特に頻出。スピードが命</li>
+        <li>1問あたり10秒前後。解法パターンの瞬間的な判断が必要</li>
+        <li>電卓が使えるので、計算力より「使いこなし」の練習を</li>
+        <li>GAB・Web-CABとURLが共通で混同しやすい</li>
+      </ul>
+      <a href="https://tanukin0423.github.io/shukatsu-6-test/" target="_blank" class="drill-link">
+        📝 玉手箱対策ドリルで練習する（就活の木）<span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- TG-WEB -->
+  <div class="test-card tg">
+    <div class="card-header">
+      <span class="card-icon">🟣</span>
+      <div class="card-title">
+        <div class="card-name">TG-WEB</div>
+        <div class="card-maker">提供：ヒューマネージ社</div>
+      </div>
+      <div class="stars">
+        <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-grid">
+        <div class="card-info"><div class="info-label">難易度</div><div class="info-val">最難関クラス</div></div>
+        <div class="card-info"><div class="info-label">形式</div><div class="info-val">従来型 / 新型の2種</div></div>
+        <div class="card-info"><div class="info-label">新型・計数</div><div class="info-val">36問／8分（1問13秒！）</div></div>
+        <div class="card-info"><div class="info-label">電卓使用</div><div class="info-val">✅ 可（必須レベル）</div></div>
+      </div>
+      <div class="subjects">
+        <span class="subject-tag" style="background:var(--purple-l);color:var(--purple);">言語</span>
+        <span class="subject-tag" style="background:var(--purple-l);color:var(--purple);">計数</span>
+        <span class="subject-tag" style="background:var(--purple-l);color:var(--purple);">英語</span>
+        <span class="subject-tag" style="background:var(--purple-l);color:var(--purple);">性格適性</span>
+      </div>
+      <ul class="feature-list">
+        <li>コンサル・外資・大手メーカーで多数採用</li>
+        <li>「解法を知れば解ける」問題が多い——対策が効く！</li>
+        <li>新型は1問あたり十数秒。反射的に解ける練習が必要</li>
+        <li>AI監視型「TG-WEB eye」はカメラ使用・事前予約が必要</li>
+      </ul>
+      <a href="https://tanukin0423.github.io/shukatsu-6-test/" target="_blank" class="drill-link">
+        📝 TG-WEB対策ドリルで練習する（就活の木）<span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- CAB・GAB -->
+  <div class="test-card cab">
+    <div class="card-header">
+      <span class="card-icon">🟢</span>
+      <div class="card-title">
+        <div class="card-name">CAB・GAB（Web版）</div>
+        <div class="card-maker">提供：日本エス・エイチ・エル（SHL）社</div>
+      </div>
+      <div class="stars">
+        <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star empty">★</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-grid">
+        <div class="card-info"><div class="info-label">CABの対象</div><div class="info-val">SE・プログラマー職</div></div>
+        <div class="card-info"><div class="info-label">GABの対象</div><div class="info-val">総合職・管理職</div></div>
+        <div class="card-info"><div class="info-label">CABの特徴</div><div class="info-val">暗号解読・数列・図形</div></div>
+        <div class="card-info"><div class="info-label">電卓使用</div><div class="info-val">✅ 可</div></div>
+      </div>
+      <div class="subjects">
+        <span class="subject-tag" style="background:var(--teal-l);color:var(--teal);">四則逆算（CAB）</span>
+        <span class="subject-tag" style="background:var(--teal-l);color:var(--teal);">暗号（CAB）</span>
+        <span class="subject-tag" style="background:var(--teal-l);color:var(--teal);">言語（GAB）</span>
+        <span class="subject-tag" style="background:var(--teal-l);color:var(--teal);">計数（GAB）</span>
+      </div>
+      <ul class="feature-list">
+        <li>CABはIT企業・システム開発会社で多く採用</li>
+        <li>「暗号解読」は独特の問題形式——事前に慣れておくことが最重要</li>
+        <li>GABは玉手箱と同じURLになることがある（科目で見分ける）</li>
+        <li>Web-CABは時間制限が非常に厳しい</li>
+      </ul>
+      <a href="https://tanukin0423.github.io/shukatsu-6-test/" target="_blank" class="drill-link">
+        📝 CAB・GAB対策ドリルで練習する（就活の木）<span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- CUBIC -->
+  <div class="test-card cubic">
+    <div class="card-header">
+      <span class="card-icon">🩷</span>
+      <div class="card-title">
+        <div class="card-name">CUBIC</div>
+        <div class="card-maker">提供：株式会社CUBIC</div>
+      </div>
+      <div class="stars">
+        <span class="star filled">★</span><span class="star filled">★</span><span class="star empty">★</span><span class="star empty">★</span><span class="star empty">★</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-grid">
+        <div class="card-info"><div class="info-label">難易度</div><div class="info-val">比較的やさしめ</div></div>
+        <div class="card-info"><div class="info-label">採用傾向</div><div class="info-val">中小・ベンチャー企業</div></div>
+        <div class="card-info"><div class="info-label">試験時間</div><div class="info-val">コンパクトで受検しやすい</div></div>
+        <div class="card-info"><div class="info-label">電卓使用</div><div class="info-val">企業による</div></div>
+      </div>
+      <div class="subjects">
+        <span class="subject-tag" style="background:var(--rose-l);color:var(--rose);">言語</span>
+        <span class="subject-tag" style="background:var(--rose-l);color:var(--rose);">数理</span>
+        <span class="subject-tag" style="background:var(--rose-l);color:var(--rose);">図形</span>
+        <span class="subject-tag" style="background:var(--rose-l);color:var(--rose);">論理</span>
+        <span class="subject-tag" style="background:var(--rose-l);color:var(--rose);">英語</span>
+      </div>
+      <ul class="feature-list">
+        <li>中小・ベンチャー企業で採用されることが多い</li>
+        <li>問題難易度は低め——基礎をしっかり押さえれば十分</li>
+        <li>図形問題が独特なので事前に一度は確認しておこう</li>
+        <li>SPI対策の知識がそのまま活かせる</li>
+      </ul>
+      <a href="https://tanukin0423.github.io/shukatsu-6-test/" target="_blank" class="drill-link">
+        📝 CUBIC対策ドリルで練習する（就活の木）<span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- SCOA -->
+  <div class="test-card scoa">
+    <div class="card-header">
+      <span class="card-icon">🌿</span>
+      <div class="card-title">
+        <div class="card-name">SCOA</div>
+        <div class="card-maker">提供：株式会社ヒューマネージ（旧：日本経営協会）</div>
+      </div>
+      <div class="stars">
+        <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star empty">★</span><span class="star empty">★</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-grid">
+        <div class="card-info"><div class="info-label">特徴</div><div class="info-val">5教科・幅広い出題</div></div>
+        <div class="card-info"><div class="info-label">問題数/時間</div><div class="info-val">120問／60分</div></div>
+        <div class="card-info"><div class="info-label">1問あたり</div><div class="info-val">約30秒（スピード重視）</div></div>
+        <div class="card-info"><div class="info-label">電卓使用</div><div class="info-val">❌ 不可</div></div>
+      </div>
+      <div class="subjects">
+        <span class="subject-tag" style="background:var(--green-l);color:var(--green2);">数理</span>
+        <span class="subject-tag" style="background:var(--green-l);color:var(--green2);">論理</span>
+        <span class="subject-tag" style="background:var(--green-l);color:var(--green2);">言語</span>
+        <span class="subject-tag" style="background:var(--green-l);color:var(--green2);">英語</span>
+        <span class="subject-tag" style="background:var(--green-l);color:var(--green2);">常識</span>
+      </div>
+      <ul class="feature-list">
+        <li>「一般常識」が含まれる珍しい形式——時事問題も出る</li>
+        <li>120問60分で1問30秒。スピードと幅広い知識が要求される</li>
+        <li>中堅・大手メーカーや公共系で採用されることが多い</li>
+        <li>SPIと一般常識の両方を対策しておくのが有効</li>
+      </ul>
+      <a href="https://tanukin0423.github.io/shukatsu-6-test/" target="_blank" class="drill-link">
+        📝 SCOA対策ドリルで練習する（就活の木）<span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="page-nav">
+    <a href="webtest-guide.html" class="btn-prev">← URL見分け方に戻る</a>
+    <a href="industry.html" class="btn-next">業界別出やすい傾向を見る →</a>
+  </div>
+
+</main>
+
+<footer>
+  <strong>就活の木</strong>｜Webテスト対策ガイド<br>
+  君は、一人じゃない。いつでも、目の前のキャリア支援課の扉は開いているよ。——キャリ爺
+</footer>
+
+</body>
+</html>
