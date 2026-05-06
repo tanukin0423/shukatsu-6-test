@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>受検前チェックリスト｜Webテスト見分け方ガイド｜就活の木</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f4ef;--bg2:#ffffff;--bg3:#f0ece4;--border:#d8d0c4;--text:#1a1209;--text2:#3d3028;--text3:#5a4e42;--green:#3a7d44;--green2:#2d6235;--green-l:#e8f5ea;--amber:#b45309;--amber-l:#fef3c7;--red:#b91c1c;--red-l:#fee2e2;--blue:#1e40af;--blue-l:#dbeafe;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+header{background:var(--green);color:#fff;padding:0 24px;height:56px;display:flex;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.15);}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-icon{font-size:22px;}.logo-text{font-size:17px;font-weight:700;}.logo-sub{font-size:10px;opacity:.8;margin-top:-2px;}
+nav{background:var(--bg2);border-bottom:2px solid var(--green);padding:0 24px;display:flex;overflow-x:auto;}
+nav a{display:flex;align-items:center;gap:6px;padding:14px 20px;font-size:13px;font-weight:700;color:var(--text2);text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s;}
+nav a:hover{color:var(--green);background:var(--green-l);}
+nav a.active{color:var(--green);border-bottom-color:var(--green);background:var(--green-l);}
+main{max-width:860px;margin:0 auto;padding:32px 20px 60px;}
+.page-header{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:28px;position:relative;overflow:hidden;}
+.page-header::before{content:'✅';position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:80px;opacity:.15;}
+.page-header .tag{display:inline-block;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:3px 14px;font-size:11px;font-weight:700;margin-bottom:10px;}
+.page-header h1{font-size:22px;font-weight:900;margin-bottom:6px;}
+.page-header p{font-size:13px;opacity:.9;line-height:1.7;}
+.section-title{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:900;color:var(--green2);margin:28px 0 16px;padding-bottom:10px;border-bottom:2px solid var(--green-l);}
+
+/* チェックリスト */
+.checklist-block{background:var(--bg2);border:1px solid var(--border);border-radius:12px;margin-bottom:20px;overflow:hidden;}
+.cl-header{padding:14px 18px;display:flex;align-items:center;gap:10px;font-size:15px;font-weight:900;}
+.cl-body{padding:4px 18px 16px;}
+.cl-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--bg3);}
+.cl-item:last-child{border-bottom:none;}
+.checkbox{width:22px;height:22px;border:2px solid var(--border);border-radius:5px;flex-shrink:0;margin-top:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;background:var(--bg2);}
+.checkbox.checked{background:var(--green);border-color:var(--green);}
+.checkbox.checked::after{content:'✓';color:#fff;font-size:13px;font-weight:900;}
+.cl-text{flex:1;}
+.cl-main{font-size:13px;font-weight:700;color:var(--text2);margin-bottom:2px;}
+.cl-sub{font-size:11px;color:var(--text3);line-height:1.6;}
+.priority-high{font-size:10px;font-weight:700;background:var(--red-l);color:var(--red);border-radius:10px;padding:2px 7px;margin-left:6px;}
+.priority-mid{font-size:10px;font-weight:700;background:var(--amber-l);color:var(--amber);border-radius:10px;padding:2px 7px;margin-left:6px;}
+
+/* 進捗バー */
+.progress-box{background:var(--bg2);border:2px solid var(--green);border-radius:12px;padding:18px 22px;margin-bottom:24px;}
+.progress-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.progress-label span{font-size:13px;font-weight:700;color:var(--text2);}
+.progress-label strong{font-size:16px;color:var(--green2);}
+.progress-bar{height:10px;background:var(--border);border-radius:10px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--green),#5db365);border-radius:10px;transition:width .4s ease;}
+.progress-msg{font-size:12px;color:var(--text3);margin-top:8px;}
+
+/* ドリルリンクセクション */
+.drill-section{background:var(--green-l);border:2px solid var(--green);border-radius:14px;padding:22px 24px;margin-bottom:24px;}
+.drill-section h3{font-size:16px;font-weight:900;color:var(--green2);margin-bottom:14px;}
+.drill-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+@media(max-width:600px){.drill-grid{grid-template-columns:1fr 1fr;}}
+.drill-btn{display:flex;flex-direction:column;align-items:center;gap:4px;background:var(--bg2);border:1px solid var(--green);border-radius:10px;padding:12px 8px;text-decoration:none;color:var(--green2);font-size:11px;font-weight:700;text-align:center;transition:all .2s;}
+.drill-btn:hover{background:var(--green);color:#fff;}
+.drill-btn .icon{font-size:20px;}
+
+/* まとめカード */
+.summary-card{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;border-radius:14px;padding:24px 28px;margin-bottom:24px;}
+.summary-card h3{font-size:17px;font-weight:900;margin-bottom:14px;}
+.summary-steps{display:flex;flex-direction:column;gap:10px;}
+.step-row{display:flex;align-items:flex-start;gap:12px;}
+.step-num{width:26px;height:26px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0;}
+.step-content{font-size:13px;line-height:1.6;opacity:.95;}
+.step-content strong{color:#fff;}
+
+.page-nav{display:flex;justify-content:space-between;margin-top:40px;}
+.btn-prev{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);color:var(--text2);text-decoration:none;padding:12px 20px;border-radius:8px;font-size:13px;font-weight:700;border:2px solid var(--border);transition:all .2s;}
+.btn-prev:hover{border-color:var(--green);color:var(--green);}
+.btn-top{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;text-decoration:none;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:700;transition:background .2s;box-shadow:0 2px 6px rgba(58,125,68,.3);}
+.btn-top:hover{background:var(--green2);}
+
+footer{background:var(--green2);color:rgba(255,255,255,.8);text-align:center;padding:20px;font-size:12px;margin-top:60px;}
+footer strong{color:#fff;}
+</style>
+</head>
+<body>
+
+<header><div class="logo"><span class="logo-icon">🌱</span><div><div class="logo-text">就活の木</div><div class="logo-sub">Webテスト見分け方ガイド</div></div></div></header>
+<nav>
+  <a href="webtest-guide.html">🔍 URL見分け方</a>
+  <a href="features.html">📊 各テストの特徴</a>
+  <a href="industry.html">🏢 業界別傾向</a>
+  <a href="checklist.html" class="active">✅ 受検前チェック</a>
+</nav>
+
+<main>
+  <div class="page-header">
+    <div class="tag">STEP 4 ／ 受検当日の準備</div>
+    <h1>✅ 受検前チェックリスト</h1>
+    <p>受検当日にあわてないために——全項目にチェックを入れてから受検しよう！<br>チェックした内容はこのページを閉じると初期化されます。</p>
+  </div>
+
+  <!-- 進捗バー -->
+  <div class="progress-box">
+    <div class="progress-label">
+      <span>チェック進捗</span>
+      <strong id="progress-text">0 / 0 完了</strong>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="progress-msg" id="progress-msg">チェックしながら準備を進めよう！</div>
+  </div>
+
+  <!-- ① 受検環境 -->
+  <div class="checklist-block">
+    <div class="cl-header" style="background:var(--blue-l);color:var(--blue);">
+      💻 ① 受検環境の確認
+    </div>
+    <div class="cl-body">
+      <div class="cl-item">
+        <div class="checkbox" onclick="toggle(this)"></div>
+        <div class="cl-text"><div class="cl-main">パソコンを使用する（スマホ・タブレット不可）<span class="priority-high">必須</span></div><div class="cl-sub">SPI・玉手箱・TG-WEB等の多くはPC専用。スマホでは受検できないテストがほとんど。</div></div>
+      </div>
+      <div class="cl-item">
+        <div class="checkbox" onclick="toggle(this)"></div>
+        <div class="cl-text"><div class="cl-main">安定したWi-Fi環境を確保している<span class="priority-high">必須</span></div><div class="cl-sub">途中で切断されると受検が無効になる場合も。有線接続がベスト。</div></div>
+      </div>
+      <div class="cl-item">
+        <div class="checkbox" onclick="toggle(this)"></div>
+        <div class="cl-text"><div class="cl-main">推奨ブラウザ（Chrome等）で動作確認済み</div><div class="cl-sub">案内メールやログイン画面に推奨ブラウザが記載されている場合は必ず従う。</div></div>
+      </div>
+      <div class="cl-item">
+        <div class="checkbox" onclick="toggle(this)"></div>
+        <div class="cl-text"><div class="cl-main">静かで集中できる環境を確保している</div><div class="cl-sub">制限時間との戦い。スマホの通知もオフに。家族にも声がけを。</div></div>
+      </div>
+      <div class="cl-item">
+        <div class="checkbox" onclick="toggle(this)"></div>
+        <div class="cl-text"><div class="cl-main">（監視型の場合）カメラ・マイクの動作確認済み<span class="priority-mid">該当者</span></div><div class="cl-sub">TG-WEB eyeなど監視型は事前予約とカメラ確認が必要。案内をよく読もう。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② テスト種別の確認 -->
+  <div class="checklist-block">
+    <div class="cl-header" style="background:var(--green-l);color:var(--green2);">
+      🔍 ② テスト種別の特定と対策
+    </div>
+    <div class="cl-body">
+      <div class="cl-item">
+        <div class="checkbox" onclick="toggle(this)"></div>
+        <div class="cl-text"><div class="cl-main">URLでテストの種類を確認した<span class="priority-high">必須</span></div><div class="cl-sub">arorua.net→SPI3、e-exams.jp→玉手箱、c-personal.com→TG-WEB など。<a href="webtest-guide.html" style="color:var(--green2);">URL見分け方一覧→</a></div></div>
+      </div>
+      <div class="cl-item">
+        <div class="checkbox" onclick="toggle(this)"></div>
+        <div class="cl-text"><div class="cl-main">該当テストのドリルで最低1回は練習した<span class="priority-high">必須</span></div><div class="cl-sub">問題形式への「慣れ」が最も重要。初見で受けると形式に戸惑い時間を浪費する。</div></div>
+      </div>
+      <div class="cl-item">
+        <div class="checkbox" onclick="toggle(this)"></div>
+        <div class="cl-text"><div class="cl-main">テストの科目数・制限時間を把握している</div><div class="cl-sub">玉手箱の計数は9分、TG-WEB新型の計数は8分など。時間感覚を事前につかもう。</div></div>
+      </div>
+      <div class="cl-item">
+        <div class="checkbox" onclick="toggle(this)"></div>
+        <div class="cl-text"><div class="cl-main">（電卓使用可の場合）電卓を手元に準備した<span class="priority-mid">玉手箱・TG-WEB</span></div><div class="cl-sub">玉手箱・TG-WEBは電卓使用可。スマホ電卓でも可だが、手元に置いて素早く使える練習を。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ 当日の準備 -->
+  <div class="checklist-block">
+    <div class="cl-header" style="background:var(--amber-l);color:var(--amber);">
+      📅 ③ 受検当日の準備
+    </div>
+    <div class="cl-body">
+      <div class="cl-item">
+        <div class="checkbox" onclick="toggle(this)"></div>
+        <div class="cl-text"><div class="cl-main">受検期限（締め切り）を確認している<span class="priority-high">必須</span></div><div class="cl-sub">通常3〜7日以内。「明日やろう」では危険。期限の2日前には余裕を持って受検しよう。</div></div>
+      </div>
+      <div class="cl-item">
+        <div class="checkbox" onclick="toggle(this)"></div>
+        <div class="cl-text"><div class="cl-main">受検用ID・パスワードを手元に準備した</div><div class="cl-sub">企業からの案内メールに記載。ログイン画面でもたついて時間を無駄にしないように。</div></div>
+      </div>
+      <div class="cl-item">
+        <div class="checkbox" onclick="toggle(this)"></div>
+        <div class="cl-text"><div class="cl-main">メモ用紙・筆記用具を手元に準備した</div><div class="cl-sub">計算の途中式、推論のメモに使う。スクラップペーパーは必需品。</div></div>
+      </div>
+      <div class="cl-item">
+        <div class="checkbox" onclick="toggle(this)"></div>
+        <div class="cl-text"><div class="cl-main">十分な睡眠・体調管理ができている</div><div class="cl-sub">集中力が勝負。徹夜明けでの受検は厳禁。万全の体調で臨もう。</div></div>
+      </div>
+      <div class="cl-item">
+        <div class="checkbox" onclick="toggle(this)"></div>
+        <div class="cl-text"><div class="cl-main">ブラウザの練習問題・説明を最後まで読んだ</div><div class="cl-sub">ログイン後の操作説明・練習問題は必ず読む。飛ばすと形式がわからず焦る原因に。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ 性格検査 -->
+  <div class="checklist-block">
+    <div class="cl-header" style="background:var(--red-l);color:var(--red);">
+      🧠 ④ 性格検査の心がまえ
+    </div>
+    <div class="cl-body">
+      <div class="cl-item">
+        <div class="checkbox" onclick="toggle(this)"></div>
+        <div class="cl-text"><div class="cl-main">「正解はない」ことを理解している</div><div class="cl-sub">性格検査に正解・不正解はない。自分の素直な感覚で答えるのが一番良い。</div></div>
+      </div>
+      <div class="cl-item">
+        <div class="checkbox" onclick="toggle(this)"></div>
+        <div class="cl-text"><div class="cl-main">同じような質問に同じように答えられるよう意識した</div><div class="cl-sub">似た質問で矛盾が生じると信頼性が低下するとされる。一貫性を意識しよう。</div></div>
+      </div>
+      <div class="cl-item">
+        <div class="checkbox" onclick="toggle(this)"></div>
+        <div class="cl-text"><div class="cl-main">あまり考えすぎず、直感で答える準備ができている</div><div class="cl-sub">深読みしすぎると時間切れに。1問2〜3秒を目安にテンポよく回答しよう。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 対策ドリルリンク -->
+  <div class="drill-section">
+    <h3>🌱 就活の木 Webテスト対策ドリル 6本セット</h3>
+    <div class="drill-grid">
+      <a href="https://tanukin0423.github.io/shukatsu-6-test/" target="_blank" class="drill-btn"><span class="icon">🔵</span>SPI3</a>
+      <a href="https://tanukin0423.github.io/shukatsu-6-test/" target="_blank" class="drill-btn"><span class="icon">🟡</span>玉手箱</a>
+      <a href="https://tanukin0423.github.io/shukatsu-6-test/" target="_blank" class="drill-btn"><span class="icon">🟣</span>TG-WEB</a>
+      <a href="https://tanukin0423.github.io/shukatsu-6-test/" target="_blank" class="drill-btn"><span class="icon">🟢</span>CAB・GAB</a>
+      <a href="https://tanukin0423.github.io/shukatsu-6-test/" target="_blank" class="drill-btn"><span class="icon">🩷</span>CUBIC</a>
+      <a href="https://tanukin0423.github.io/shukatsu-6-test/" target="_blank" class="drill-btn"><span class="icon">🌿</span>SCOA</a>
+    </div>
+  </div>
+
+  <!-- まとめ -->
+  <div class="summary-card">
+    <h3>🌳 キャリ爺からのエール</h3>
+    <div class="summary-steps">
+      <div class="step-row"><div class="step-num">1</div><div class="step-content"><strong>URLを見てテスト種別を特定する</strong>——迷わず調べる。情報は自分で取りにいく。</div></div>
+      <div class="step-row"><div class="step-num">2</div><div class="step-content"><strong>該当ドリルで問題形式に慣れる</strong>——「知っているか」ではなく「慣れているか」が鍵。</div></div>
+      <div class="step-row"><div class="step-num">3</div><div class="step-content"><strong>万全の環境で自信を持って受検する</strong>——準備できた君なら大丈夫。木は丁寧に育てると必ず伸びる。</div></div>
+    </div>
+  </div>
+
+  <div class="page-nav">
+    <a href="industry.html" class="btn-prev">← 業界別傾向に戻る</a>
+    <a href="webtest-guide.html" class="btn-top">🏠 ガイドのトップへ</a>
+  </div>
+</main>
+
+<footer><strong>就活の木</strong>｜Webテスト対策ガイド<br>君は、一人じゃない。いつでも、目の前のキャリア支援課の扉は開いているよ。——キャリ爺</footer>
+
+<script>
+function toggle(el) {
+  el.classList.toggle('checked');
+  updateProgress();
+}
+
+function updateProgress() {
+  const all = document.querySelectorAll('.checkbox');
+  const checked = document.querySelectorAll('.checkbox.checked');
+  const total = all.length;
+  const done = checked.length;
+  const pct = total > 0 ? Math.round(done / total * 100) : 0;
+
+  document.getElementById('progress-text').textContent = done + ' / ' + total + ' 完了';
+  document.getElementById('progress-fill').style.width = pct + '%';
+
+  const msg = document.getElementById('progress-msg');
+  if (pct === 0) msg.textContent = 'チェックしながら準備を進めよう！';
+  else if (pct < 50) msg.textContent = '順調です！引き続き確認を続けよう。';
+  else if (pct < 100) msg.textContent = 'もう少し！準備が整ってきています 🌱';
+  else msg.textContent = '✅ 全項目クリア！自信を持って受検しよう！🎉';
+}
+
+updateProgress();
+</script>
+</body>
+</html>
