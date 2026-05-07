@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📝 筆記試験対策ドリル完全ガイド｜就活の木</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#2C5F2D;--green-mid:#4A8C4B;--green-pale:#E8F5E9;
+  --amber:#F59E0B;--gray:#6B7280;--shadow:0 2px 8px rgba(0,0,0,0.10);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP',sans-serif;background:#F0FDF0;min-height:100vh;color:#1F2937;}
+
+/* APIキーバー */
+#apiBar{background:linear-gradient(135deg,#4c1d95,#7c3aed);padding:10px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:sticky;top:0;z-index:999;}
+#apiBar span.label{color:#fff;font-size:12px;font-weight:700;white-space:nowrap;}
+#apiKeyInput{flex:1;min-width:160px;padding:7px 12px;border-radius:8px;border:none;font-size:12px;outline:none;}
+.api-btn{padding:7px 14px;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;}
+.api-save{background:#22c55e;color:#fff;}
+.api-clear{background:rgba(255,255,255,0.2);color:#fff;}
+#apiStatus{font-size:11px;font-weight:700;color:#fff;white-space:nowrap;}
+
+/* ヒーロー */
+.hero{background:linear-gradient(150deg,#2C5F2D,#4A8C4B);padding:36px 20px 44px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'🌳';position:absolute;right:-10px;bottom:0;font-size:120px;opacity:0.08;line-height:1;}
+.brand{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.9);font-size:11px;font-weight:700;letter-spacing:0.1em;padding:4px 12px;border-radius:20px;margin-bottom:12px;}
+.hero-icon{font-size:44px;display:block;margin-bottom:8px;animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+.hero h1{font-size:clamp(20px,5vw,28px);font-weight:900;color:#fff;margin-bottom:8px;}
+.hero p{font-size:13px;color:rgba(255,255,255,0.85);line-height:1.7;}
+.stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:16px;}
+.stat{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:10px;padding:8px 16px;text-align:center;}
+.stat-num{font-size:20px;font-weight:900;color:#fff;}
+.stat-lbl{font-size:10px;color:rgba(255,255,255,0.8);}
+
+/* コンテンツ */
+.content{max-width:720px;margin:0 auto;padding:24px 16px 60px;}
+
+/* APIキー設定カード */
+.api-card{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:20px;margin-bottom:24px;}
+.api-card-title{font-size:14px;font-weight:900;color:#4c1d95;margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.api-steps{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.9;color:var(--gray);}
+.api-steps a{color:#4c1d95;font-weight:700;}
+
+/* セクションラベル */
+.sec-label{font-size:11px;font-weight:700;letter-spacing:0.10em;color:var(--gray);margin:20px 0 12px;display:flex;align-items:center;gap:8px;}
+.sec-label::after{content:'';flex:1;height:1px;background:#C8E6C9;}
+
+/* ドリルカード */
+.drill-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+.drill-card{display:flex;align-items:center;background:#fff;border-radius:14px;box-shadow:var(--shadow);overflow:hidden;text-decoration:none;color:#1F2937;transition:transform 0.18s,box-shadow 0.18s;}
+.drill-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.13);}
+.card-bar{width:6px;flex-shrink:0;align-self:stretch;}
+.card-inner{flex:1;padding:14px 16px;display:flex;align-items:center;gap:12px;}
+.card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.card-info{flex:1;}
+.card-num{font-size:10px;font-weight:700;letter-spacing:0.08em;margin-bottom:2px;}
+.card-title{font-size:15px;font-weight:900;margin-bottom:3px;}
+.card-desc{font-size:11px;color:var(--gray);line-height:1.5;}
+.card-tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:5px;}
+.tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;}
+.card-right{padding:14px 16px 14px 0;flex-shrink:0;text-align:right;}
+.card-badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;margin-bottom:4px;display:inline-block;}
+.card-arrow{font-size:18px;margin-top:4px;}
+
+/* キャリ爺メッセージ */
+.message{background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:16px;margin-top:8px;}
+.message-inner{background:linear-gradient(135deg,#FFF7ED,#FEF3C7);border-left:4px solid var(--amber);border-radius:0 10px 10px 0;padding:12px 14px;}
+.message-lbl{font-size:10px;font-weight:700;color:#92400E;margin-bottom:4px;display:block;}
+.message-text{font-size:13px;color:#78350F;font-style:italic;line-height:1.8;}
+
+.footer{text-align:center;padding:0 16px 40px;font-size:11px;color:var(--gray);}
+.footer b{color:var(--green-mid);}
+
+/* カラーテーマ（各試験種別） */
+/* SPI3：ブルー */
+.c-spi .card-bar{background:linear-gradient(180deg,#1e3a5f,#2563eb);}
+.c-spi .card-icon{background:#EFF6FF;}
+.c-spi .card-num{color:#1e3a5f;}
+.c-spi .card-arrow{color:#2563eb;}
+.c-spi .tag{background:#EFF6FF;color:#1e3a5f;}
+.c-spi .card-badge{background:#EFF6FF;color:#1e3a5f;}
+
+/* TG-WEB：ティール */
+.c-tgweb .card-bar{background:linear-gradient(180deg,#134e4a,#0d9488);}
+.c-tgweb .card-icon{background:#F0FDFA;}
+.c-tgweb .card-num{color:#134e4a;}
+.c-tgweb .card-arrow{color:#0d9488;}
+.c-tgweb .tag{background:#F0FDFA;color:#134e4a;}
+.c-tgweb .card-badge{background:#F0FDFA;color:#134e4a;}
+
+/* 玉手箱：オレンジ */
+.c-tama .card-bar{background:linear-gradient(180deg,#7c2d12,#ea580c);}
+.c-tama .card-icon{background:#FFF7ED;}
+.c-tama .card-num{color:#7c2d12;}
+.c-tama .card-arrow{color:#ea580c;}
+.c-tama .tag{background:#FFF7ED;color:#7c2d12;}
+.c-tama .card-badge{background:#FFF7ED;color:#7c2d12;}
+
+/* CAB/GAB：ネイビー */
+.c-cab .card-bar{background:linear-gradient(180deg,#1e3a5f,#1d4ed8);}
+.c-cab .card-icon{background:#EFF6FF;}
+.c-cab .card-num{color:#1e3a5f;}
+.c-cab .card-arrow{color:#1d4ed8;}
+.c-cab .tag{background:#DBEAFE;color:#1e3a5f;}
+.c-cab .card-badge{background:#DBEAFE;color:#1e3a5f;}
+
+/* 一般常識：レッド */
+.c-ippan .card-bar{background:linear-gradient(180deg,#7f1d1d,#dc2626);}
+.c-ippan .card-icon{background:#FEF2F2;}
+.c-ippan .card-num{color:#7f1d1d;}
+.c-ippan .card-arrow{color:#dc2626;}
+.c-ippan .tag{background:#FEF2F2;color:#7f1d1d;}
+.c-ippan .card-badge{background:#FEF2F2;color:#7f1d1d;}
+
+/* 独自試験：パープル */
+.c-doku .card-bar{background:linear-gradient(180deg,#4c1d95,#7c3aed);}
+.c-doku .card-icon{background:#F5F3FF;}
+.c-doku .card-num{color:#4c1d95;}
+.c-doku .card-arrow{color:#7c3aed;}
+.c-doku .tag{background:#F5F3FF;color:#4c1d95;}
+.c-doku .card-badge{background:#F5F3FF;color:#4c1d95;}
+
+@media(max-width:480px){
+  .hero{padding:28px 14px 36px;}
+  .content{padding:16px 12px 50px;}
+  .card-title{font-size:13px;}
+  .card-desc{font-size:10px;}
+  .card-icon{width:40px;height:40px;font-size:20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- APIキーバー -->
+<div id="apiBar">
+  <span class="label">🔑 Groq APIキー：</span>
+  <input id="apiKeyInput" type="password" placeholder="gsk_... を入力して保存（全ドリルで共有）"/>
+  <button class="api-btn api-save" onclick="saveKey()">💾 保存</button>
+  <button class="api-btn api-clear" onclick="clearKey()">🗑️</button>
+  <span id="apiStatus"></span>
+</div>
+
+<!-- ヒーロー -->
+<div class="hero">
+  <div class="brand">🌱 就活の木｜多摩大学キャリア支援課</div>
+  <span class="hero-icon">📝</span>
+  <h1>筆記試験対策ドリル 完全ガイド</h1>
+  <p>SPI3・TG-WEB・玉手箱・CAB/GAB・一般常識・独自試験<br>固定問題 ＋ AI自動出題（普通・難関）｜4択・即時採点・解説つき</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">6</div><div class="stat-lbl">試験種別</div></div>
+    <div class="stat"><div class="stat-num">13</div><div class="stat-lbl">分野</div></div>
+    <div class="stat"><div class="stat-num">150+</div><div class="stat-lbl">固定問題</div></div>
+    <div class="stat"><div class="stat-num">∞</div><div class="stat-lbl">AI出題</div></div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- APIキー設定案内 -->
+  <div class="api-card">
+    <div class="api-card-title">🔑 AI自動出題を使うには（無料・3分で設定）</div>
+    <div class="api-steps">
+      ① <a href="https://console.groq.com/keys" target="_blank">console.groq.com/keys</a> にアクセス（Googleアカウント等でログイン）<br>
+      ② 「Create API Key」をクリック → gsk_...のキーをコピー<br>
+      ③ 上の紫バーに貼り付けて「💾 保存」を押す<br>
+      ④ 各ドリルでAI問題が<strong>1日1,000回</strong>生成できます！（完全無料・クレカ不要）（普通・難関の2レベル）
+    </div>
+  </div>
+
+  <!-- SPI3 -->
+  <div class="sec-label">📘 SPI3（大手〜中堅・最多採用）</div>
+  <div class="drill-grid">
+    <a class="drill-card c-spi" href="spi3-drill.html">
+      <div class="card-bar"></div>
+      <div class="card-inner">
+        <div class="card-icon">📘</div>
+        <div class="card-info">
+          <div class="card-num">DRILL 01 ／ SPI3</div>
+          <div class="card-title">SPI3 完全攻略ドリル</div>
+          <div class="card-desc">言語・非言語・英語の3分野をタブで切り替えて対策</div>
+          <div class="card-tags">
+            <span class="tag">📖 言語</span>
+            <span class="tag">🔢 非言語</span>
+            <span class="tag">🌐 英語</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-right">
+        <div class="card-badge">3分野</div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- TG-WEB -->
+  <div class="sec-label">📗 TG-WEB（大手企業・外資系）</div>
+  <div class="drill-grid">
+    <a class="drill-card c-tgweb" href="tgweb-drill.html">
+      <div class="card-bar"></div>
+      <div class="card-inner">
+        <div class="card-icon">📗</div>
+        <div class="card-info">
+          <div class="card-num">DRILL 02 ／ TG-WEB</div>
+          <div class="card-title">TG-WEB 完全攻略ドリル</div>
+          <div class="card-desc">長文読解・論理推論・鶴亀算・数列を徹底対策</div>
+          <div class="card-tags">
+            <span class="tag">📖 言語（長文・論理）</span>
+            <span class="tag">🔢 計数</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-right">
+        <div class="card-badge">2分野</div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- 玉手箱 -->
+  <div class="sec-label">🟠 玉手箱（大手メーカー・金融・商社）</div>
+  <div class="drill-grid">
+    <a class="drill-card c-tama" href="tamatebako-drill.html">
+      <div class="card-bar"></div>
+      <div class="card-inner">
+        <div class="card-icon">🟠</div>
+        <div class="card-info">
+          <div class="card-num">DRILL 03 ／ 玉手箱</div>
+          <div class="card-title">玉手箱 完全攻略ドリル</div>
+          <div class="card-desc">四則逆算（□を求める）・図表読み取りを集中対策</div>
+          <div class="card-tags">
+            <span class="tag">🔣 四則逆算</span>
+            <span class="tag">📊 図表読み取り</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-right">
+        <div class="card-badge">2分野</div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- CAB/GAB -->
+  <div class="sec-label">🔵 CAB/GAB（IT・コンサル・外資系）</div>
+  <div class="drill-grid">
+    <a class="drill-card c-cab" href="cabgab-drill.html">
+      <div class="card-bar"></div>
+      <div class="card-inner">
+        <div class="card-icon">🔵</div>
+        <div class="card-info">
+          <div class="card-num">DRILL 04 ／ CAB/GAB</div>
+          <div class="card-title">CAB/GAB 完全攻略ドリル</div>
+          <div class="card-desc">暗算（四則演算スピード）・法則性（数列・文字列パターン）</div>
+          <div class="card-tags">
+            <span class="tag">🧮 暗算</span>
+            <span class="tag">🔢 法則性</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-right">
+        <div class="card-badge">2分野</div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- 一般常識 -->
+  <div class="sec-label">📰 一般常識（全業種・中小〜大手）</div>
+  <div class="drill-grid">
+    <a class="drill-card c-ippan" href="ippan-drill.html">
+      <div class="card-bar"></div>
+      <div class="card-inner">
+        <div class="card-icon">📰</div>
+        <div class="card-info">
+          <div class="card-num">DRILL 05 ／ 一般常識</div>
+          <div class="card-title">一般常識 完全攻略ドリル</div>
+          <div class="card-desc">時事・社会（DX・SDGs・生成AI等）と国語・語彙を対策</div>
+          <div class="card-tags">
+            <span class="tag">🌐 時事・社会</span>
+            <span class="tag">📖 国語・語彙</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-right">
+        <div class="card-badge">2分野</div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- 独自試験 -->
+  <div class="sec-label">🟣 独自試験（新聞・金融・マスコミ・コンサル等）</div>
+  <div class="drill-grid">
+    <a class="drill-card c-doku" href="dokujitu-drill.html">
+      <div class="card-bar"></div>
+      <div class="card-inner">
+        <div class="card-icon">🟣</div>
+        <div class="card-info">
+          <div class="card-num">DRILL 06 ／ 独自試験</div>
+          <div class="card-title">独自試験 完全攻略ドリル</div>
+          <div class="card-desc">論理・推論（MECE・三段論法）と作文・小論文構成を対策</div>
+          <div class="card-tags">
+            <span class="tag">🧠 論理・推論</span>
+            <span class="tag">✍️ 作文・小論文</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-right">
+        <div class="card-badge">2分野</div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- Webテスト見分け方ガイド -->
+  <div class="sec-label">🔍 まず受ける試験の種類を確認しよう！</div>
+  <div class="drill-grid">
+    <a class="drill-card" href="webtest-guide.html" style="border:2px solid #F59E0B;">
+      <div class="card-bar" style="background:linear-gradient(180deg,#92400E,#F59E0B);"></div>
+      <div class="card-inner">
+        <div class="card-icon" style="background:#FEF3C7;">🔍</div>
+        <div class="card-info">
+          <div class="card-num" style="color:#92400E;">必読ガイド</div>
+          <div class="card-title">試験の種類を見抜く方法</div>
+          <div class="card-desc">SPI・TG-WEB・玉手箱・CAB/GAB・独自試験——どれを受けるか事前に見抜く方法</div>
+          <div class="card-tags">
+            <span class="tag">⭐ まず読もう</span>
+            <span class="tag">試験種別</span>
+            <span class="tag">見分け方</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-right">
+        <div class="card-badge">必読</div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- キャリ爺メッセージ -->
+  <div class="message">
+    <div class="message-inner">
+      <span class="message-lbl">🌱 キャリ爺より</span>
+      <div class="message-text">
+        「木を育てるように、就活も一歩ずつ丁寧に。」<br>
+        固定問題で基礎を固め、AI出題で応用力を磨こう。<br>
+        答えはすでに、君の中にある。
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer"><b>🌱 就活の木</b>｜多摩大学キャリア支援課｜キャリ爺作成</div>
+
+<script>
+const KEY = 'shukatsu_groq_key';
+function getKey(){ return sessionStorage.getItem(KEY)||''; }
+function saveKey(){
+  const k=document.getElementById('apiKeyInput').value.trim();
+  if(!k){showSt('❌ キーを入力してください','#fca5a5');return;}
+  if(!k.startsWith('gsk_')){showSt('⚠️ gsk_で始まるGroqキーを入力してください','#fde68a');return;}
+  sessionStorage.setItem(KEY,k);
+  document.getElementById('apiKeyInput').value='';
+  showSt('✅ 保存済み！全ドリルでAI出題が使えます','#86efac');
+}
+function clearKey(){
+  sessionStorage.removeItem(KEY);
+  showSt('🗑️ 削除しました','#e5e7eb');
+}
+function showSt(msg,color){
+  const el=document.getElementById('apiStatus');
+  el.style.color=color;el.textContent=msg;
+  setTimeout(()=>{if(el.textContent===msg)el.textContent='';},5000);
+}
+window.addEventListener('load',()=>{
+  if(getKey()) showSt('✅ APIキー設定済み','#86efac');
+});
+</script>
+</body>
+</html>
